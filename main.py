@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify, render_template
 from http.server import BaseHTTPRequestHandler
 from werkzeug.serving import run_simple
 import logging
+from dotenv import load_dotenv
+import os
 
 import pandas as pd
 import numpy as np
@@ -9,8 +11,10 @@ from huggingface_hub import InferenceClient
 
 SIMILARITY_THRESHOLD = 0.5
 
+load_dotenv()
 app = Flask(__name__, static_folder="static", template_folder="templates")
 wsgi_app = app
+api_key = os.getenv("API_KEY")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -25,7 +29,7 @@ logger = logging.getLogger(__name__)
 # Read in embeddings, metadata, start HuggingFace API
 df = pd.read_pickle("faq_with_embeddings.pkl")
 cosines = np.load("embeddings.npy")
-client = InferenceClient(token="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")
+client = InferenceClient(token=api_key)
 
 @app.route("/", methods=["GET"])
 def home():

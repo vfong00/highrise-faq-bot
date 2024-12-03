@@ -3,3 +3,4 @@ pandas
 numpy
 huggingface_hub
 werkzeug
+dotenv
