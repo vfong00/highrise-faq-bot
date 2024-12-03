@@ -1,6 +1,6 @@
 flask
-pandas
-numpy
 huggingface_hub
+numpy
+pandas
+python-dotenv
 werkzeug
-dotenv

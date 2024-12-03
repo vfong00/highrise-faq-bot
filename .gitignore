@@ -3,3 +3,5 @@
 __pycache__
 .DS_Store
 .env
+faq_processed.json
+highrise_faq.json
